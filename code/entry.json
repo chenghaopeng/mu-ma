@@ -12,5 +12,12 @@
     "author": "pp",
     "email": "i@chper.cn",
     "language": "JavaScript"
+  },
+  {
+    "name": "首屏时间采集",
+    "path": "fp-time-collect/fp.js",
+    "author": "pp",
+    "email": "i@chper.cn",
+    "language": "JavaScript"
   }
 ]
