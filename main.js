@@ -10,7 +10,7 @@ itemsNode.addEventListener('click', e => {
   itemNodesDo(node => node.classList.remove('checked'))
   item.classList.add('checked')
   const language = item.dataset.language.toLowerCase()
-  fetch('code.php?path=' + item.dataset.path).then(res => {
+  fetch('/code/' + item.dataset.path).then(res => {
     res.text().then(data => {
       const html = Prism.highlight(data, Prism.languages[language], language)
       view.className = 'language-' + language
