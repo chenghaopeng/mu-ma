@@ -1,7 +1,14 @@
 [
   {
-    "name": "手写 Promise",
+    "name": "手写简易 Promise",
     "path": "my-promise/MyPromise.js",
+    "author": "pp",
+    "email": "i@chper.cn",
+    "language": "JavaScript"
+  },
+  {
+    "name": "手写简易链式 Promise",
+    "path": "my-promise-chain/MyPromise.js",
     "author": "pp",
     "email": "i@chper.cn",
     "language": "JavaScript"
