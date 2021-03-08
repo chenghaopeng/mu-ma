@@ -32,7 +32,7 @@
   /* 观察 body 节点 */
   const targetNode = document.body
   /* 观察 body 的整棵 DOM 树的变化 */
-  const observerOptions = { subtree: true }
+  const observerOptions = { childList: true, subtree: true }
   /* DOM 变化观察者 */
   const mo = new MutationObserver(() => {
     /* 每次变化都记录当前的分数以及时刻 */
@@ -43,4 +43,71 @@
   })
   /* 开始观察 */
   mo.observe(targetNode, observerOptions)
+})()
+
+/* 图片的加载时间 */
+(() => {
+  /* 获取所有图片链接，包括 img 标签和元素 backrgound */
+  const getImgs = () => {
+    /* 链接数组 */
+    const imgs = []
+    /* 从 background 属性值中提取链接 */
+    const getSrcFromBg = bg => {
+      const pattern = /url\((.*?)\)/g
+      const urls = bg.match(pattern)
+      if (urls && urls.length) {
+        /* 找最后一个 url() */
+        const url = urls[urls.length - 1]
+        /* 得到链接 */
+        const src = pattern.exec(url)[1]
+        /* 如果 // 开头，需要加上协议 */
+        if (/^\/\//.test(src)) {
+          return 'https:' + src
+        }
+        if (/^http/.test(src)) {
+          return src
+        }
+      }
+      return null
+    }
+    /* 从节点提取链接，包括 img 和 background */
+    const getImgSrcFromNode = el => {
+      let src
+      if (el.tagName === 'IMG') {
+        /* img 直接提取 src 属性 */
+        src = el.src
+      } else {
+        /* 获取节点的 backrgound */
+        const style = window.getComputedStyle(el)
+        const bgImg = style.backgroundImage || style.background
+        /* 从 background 中提取 */
+        src = getSrcFromBg(bgImg)
+      }
+      return src
+    }
+    /* 深度搜索 DOM 树 */
+    const dfs = el => {
+      /* 获取当前节点包含的链接 */
+      const src = getImgSrcFromNode(el)
+      if (src && !imgs.includes(src)) {
+        imgs.push(src)
+      }
+      /* 遍历所有子节点 */
+      for (let i = el.children.length - 1; i >= 0; --i) {
+        dfs(el.children[i])
+      }
+    }
+    /* 从 body 开始遍历 */
+    dfs(document.body)
+    return imgs
+  }
+  const imgs = getImgs()
+  console.log(Math.max(...imgs.map(src => {
+    try {
+      /* 根据 src 得到该图片的加载时间 */
+      return performance.getEntriesByName(src)[0].responseEnd || 0
+    } catch (e) {
+      return 0
+    }
+  })))
 })()
