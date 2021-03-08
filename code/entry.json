@@ -19,5 +19,12 @@
     "author": "pp",
     "email": "i@chper.cn",
     "language": "JavaScript"
+  },
+  {
+    "name": "可无限次调用()的求和函数",
+    "path": "curring-unlimited-sum-function/curring-unlimited-sum-function.js",
+    "author": "pp",
+    "email": "i@chper.cn",
+    "language": "JavaScript"
   }
 ]
