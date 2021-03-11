@@ -26,5 +26,12 @@
     "author": "pp",
     "email": "i@chper.cn",
     "language": "JavaScript"
+  },
+  {
+    "name": "手写 call, apply, bind",
+    "path": "call-apply-bind/call-apply-bind.js",
+    "author": "pp",
+    "email": "i@chper.cn",
+    "language": "JavaScript"
   }
 ]
