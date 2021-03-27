@@ -22,7 +22,7 @@ Object.prototype[Symbol.iterator] = function () {
   let i = 0
   return {
     next: () => {
-      const done = i === keys.length
+      const done = i >= keys.length
       const value = done ? undefined : [keys[i], this[keys[i]]]
       i++
       return { value, done }
