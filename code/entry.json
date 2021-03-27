@@ -40,5 +40,12 @@
     "author": "pp",
     "email": "i@chper.cn",
     "language": "JavaScript"
+  },
+  {
+    "name": "可迭代对象",
+    "path": "iterable-object/iterable-object.js",
+    "author": "pp",
+    "email": "i@chper.cn",
+    "language": "JavaScript"
   }
 ]
